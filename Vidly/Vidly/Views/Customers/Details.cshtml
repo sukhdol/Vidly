@@ -7,9 +7,9 @@
 
 <ul>
     <li>Membership Type: @Model.MembershipType.Name</li>
-    @if (Model.Birthdate != null)
+    @if (Model.Birthdate.HasValue)
     {
-        <li>Birthdate: @String.Format("{0:d}", Model.Birthdate)</li>
+        <li>Birthdate: @Model.Birthdate.Value.ToShortDateString()</li>
     }
 </ul>
 
