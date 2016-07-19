@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
 {
@@ -9,7 +10,11 @@ namespace Vidly.Models
         [Required(ErrorMessage = "Your name is required.")]
         [StringLength(255, ErrorMessage = "Your name cannot exceed 255 characters")]
         public string Name { get; set; }
+
         public bool IsSubscribedToNewsletter { get; set; }
+
+        public DateTime? Birthdate { get; set; }
+
         public byte MembershipTypeId { get; set; }
 
         // Navigation Properties
