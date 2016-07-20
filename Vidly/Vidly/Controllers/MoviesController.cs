@@ -47,6 +47,12 @@ namespace Vidly.Controllers
 
         public ActionResult Create(MovieFormViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList();
+                return View("MovieForm", viewModel);
+            }
+
             viewModel.Movie.DateAdded = DateTime.Now;
             _context.Movies.Add(viewModel.Movie);
             _context.SaveChanges();

@@ -80,6 +80,7 @@ namespace Vidly.Controllers
             return View("CustomerForm", viewModel);
         }
 
+        [HttpPost]
         public ActionResult Update(CustomerFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
