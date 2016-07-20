@@ -13,14 +13,17 @@ namespace Vidly.Models
 
         public DateTime DateAdded { get; set; }
 
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
+        [Display(Name = "Number In Stock")]
         public byte NumberInStock { get; set; }
 
+        [Display(Name = "Genre")]
+        [Required(ErrorMessage = "The genre of the movie is required.")]
         public byte GenreId { get; set; }
 
         // Navigation Properties
-        [Required(ErrorMessage = "The genre of the movie is required.")]
         public Genre Genre { get; set; }
 
     }
