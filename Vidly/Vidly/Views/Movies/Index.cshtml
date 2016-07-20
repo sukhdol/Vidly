@@ -4,15 +4,24 @@
 }
 
 <h2>Movies</h2>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("New", "Movies")">NEW MOVIE</a>
+</p>
 
-<table class="table table-bordered table-hover">
-    <thead>
+@if (!Model.Any())
+{
+    <p>We don't have any movies yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
         <tr>
             <th>Movie</th>
             <th>Genre</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var movie in Model)
         {
             <tr>
@@ -22,7 +31,7 @@
                 <td>@movie.Genre.Name</td>
             </tr>
         }
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
+}
 
