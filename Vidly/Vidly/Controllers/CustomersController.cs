@@ -34,25 +34,67 @@ namespace Vidly.Controllers
         {
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewCustomerViewModel()
+            var viewModel = new CustomerFormViewModel
             {
+                Heading = "Add New Customer",
+                Action = "Create",
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(NewCustomerViewModel viewModel)
+        public ActionResult Create(CustomerFormViewModel formViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                formViewModel.MembershipTypes = _context.MembershipTypes.ToList();
+
+                return View("CustomerForm", formViewModel);
+            }
+
+            _context.Customers.Add(formViewModel.Customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Heading = "Edit Customer",
+                Action = "Update",
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
+        public ActionResult Update(CustomerFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
                 viewModel.MembershipTypes = _context.MembershipTypes.ToList();
-
-                return View("New", viewModel);
+                return View("CustomerForm", viewModel);
             }
 
-            _context.Customers.Add(viewModel.Customer);
+            var customerInDb = _context.Customers.Single(c => c.Id == viewModel.Customer.Id);
+
+            customerInDb.Name = viewModel.Customer.Name;
+            customerInDb.Birthdate = viewModel.Customer.Birthdate;
+            customerInDb.IsSubscribedToNewsletter = viewModel.Customer.IsSubscribedToNewsletter;
+            customerInDb.MembershipTypeId = viewModel.Customer.MembershipTypeId;
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
