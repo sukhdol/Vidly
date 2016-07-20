@@ -7,7 +7,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "You need to provide the name of the movie.")]
+        [Required(ErrorMessage = "The name of the movie is required.")]
         [StringLength(255, ErrorMessage = "The name of the movie cannot exceed 255 characters.")]
         public string Name { get; set; }
 
@@ -20,7 +20,7 @@ namespace Vidly.Models
         public byte GenreId { get; set; }
 
         // Navigation Properties
-        [Required(ErrorMessage = "You need to provide a genre.")]
+        [Required(ErrorMessage = "The genre of the movie is required.")]
         public Genre Genre { get; set; }
 
     }

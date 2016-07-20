@@ -6,7 +6,7 @@ namespace Vidly.Models
     {
         public byte Id { get; set; }
 
-        [Required(ErrorMessage = "You need to provide the name for the Membership Type.")]
+        [Required(ErrorMessage = "The membership type name is required.")]
         public string Name { get; set; }
 
         public short SignUpFee { get; set; }

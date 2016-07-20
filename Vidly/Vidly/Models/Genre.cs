@@ -6,7 +6,7 @@ namespace Vidly.Models
     {
         public byte Id { get; set; }
 
-        [Required(ErrorMessage = "You need to provide the name of the genre.")]
+        [Required(ErrorMessage = "The name of the genre is required.")]
         [StringLength(255, ErrorMessage = "The genre name cannot exceed 255 characters.")]
         public string Name { get; set; }
     }
