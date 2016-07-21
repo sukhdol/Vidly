@@ -38,7 +38,8 @@ namespace Vidly.Controllers
             {
                 Heading = "Add New Customer",
                 Action = "Create",
-                MembershipTypes = membershipTypes
+                MembershipTypes = membershipTypes,
+                Customer = new Customer()
             };
 
             return View("CustomerForm", viewModel);
