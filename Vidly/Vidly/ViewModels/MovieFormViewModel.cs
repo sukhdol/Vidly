@@ -33,7 +33,6 @@ namespace Vidly.ViewModels
         {
             get { return Id != 0 ? "Edit Movie" : "Add Movie"; }
         }
-        public string Action { get; set; }
 
         public MovieFormViewModel()
         {
