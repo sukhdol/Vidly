@@ -18,5 +18,7 @@ namespace Vidly.Dtos
 
         [Required(ErrorMessage = "The membership type is required.")]
         public byte MembershipTypeId { get; set; }
+
+        public MembershipTypeDto MembershipType { get; set; }
     }
 }
