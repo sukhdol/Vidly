@@ -79,6 +79,12 @@ namespace Vidly.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // Additional Properties
+        [Required(ErrorMessage = "The customer's driving license is required.")]
+        [StringLength(255, ErrorMessage = "The driving license cannot exceed 255 characters.")]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
     }
 
     public class ResetPasswordViewModel
