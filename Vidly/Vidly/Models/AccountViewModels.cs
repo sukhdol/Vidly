@@ -8,6 +8,12 @@ namespace Vidly.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        // Additional Properties
+        [Required(ErrorMessage = "The customer's driving license is required.")]
+        [StringLength(255, ErrorMessage = "The driving license cannot exceed 255 characters.")]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel
