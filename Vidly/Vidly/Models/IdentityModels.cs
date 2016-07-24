@@ -13,6 +13,10 @@ namespace Vidly.Models
         [StringLength(255, ErrorMessage = "The driving license cannot exceed 255 characters.")]
         public string DrivingLicense { get; set; }
 
+        [Required(ErrorMessage = "Please enter customer's phone number.")]
+        [StringLength(50, ErrorMessage = "The phone number should not exceed 50 characters.")]
+        public string Phone { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
