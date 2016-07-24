@@ -91,6 +91,12 @@ namespace Vidly.Models
         [StringLength(255, ErrorMessage = "The driving license cannot exceed 255 characters.")]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
+
+        [Required(ErrorMessage = "Please enter customer's phone number.")]
+        [StringLength(50, ErrorMessage = "The phone number should not exceed 50 characters.")]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
     }
 
     public class ResetPasswordViewModel
