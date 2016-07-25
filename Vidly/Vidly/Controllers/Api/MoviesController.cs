@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
@@ -17,13 +18,22 @@ namespace Vidly.Controllers.Api
         }
 
         // GET api/movies
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movies = _context.Movies
+            var moviesQuery = _context.Movies
                 .Include(m => m.Genre)
-                .ToList().Select(Mapper.Map<Movie, MovieDto>);
+                .Where(m => m.NumberAvailable > 0);
 
-            return Ok(movies);
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+            }
+
+            var moviesDtos = moviesQuery
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>); 
+
+            return Ok(moviesDtos);
         }
 
         // GET api/movies/1
