@@ -1,4 +1,4 @@
-# Vidly
+# Vidly - Video Rental MVC App
 
 Admin Account
 
